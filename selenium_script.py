@@ -6,20 +6,16 @@ import time
 import os
 
 
-def run_selenium(chromedriver_path=None):
-    # Шлях до chromedriver.exe у поточній папці
+def run_selenium() -> list[str]:
     chromedriver_path = os.path.join(os.getcwd(), "chromedriver.exe")
 
-    # Створення сервісу
     service = Service(chromedriver_path)
     options = webdriver.ChromeOptions()
 
-    # Запуск браузера
     driver = webdriver.Chrome(service=service, options=options)
     try:
         driver.get("https://quotes.toscrape.com/login")
         time.sleep(2)
-
         driver.find_element(By.ID, "username").send_keys("admin")
         driver.find_element(By.ID, "password").send_keys("admin")
         driver.find_element(By.CSS_SELECTOR, "input[type='submit']").click()
@@ -37,7 +33,7 @@ def run_selenium(chromedriver_path=None):
 
         selected_quotes = random.sample(quotes, 3)
 
-        return selected_quotes  # повертаємо список цитат
+        return selected_quotes
 
     finally:
         driver.quit()

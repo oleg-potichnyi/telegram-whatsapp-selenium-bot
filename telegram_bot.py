@@ -20,7 +20,7 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def run(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Запускаю Selenium.")
     try:
-        quotes = run_selenium()  # отримуємо список цитат
+        quotes = run_selenium()
         message = "Успішно залогінено. Ось ваші цитати:\n\n"
         for i, quote in enumerate(quotes, 1):
             message += f"{i}. {quote}\n"
